@@ -5,9 +5,10 @@ project(brain)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-  std_msgs
+    roscpp
+    rospy
+    std_msgs
+    message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -51,11 +52,14 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
+  add_service_files(
+    FILES
 #   Service1.srv
 #   Service2.srv
-# )
+    TableSetup.srv
+    GripLoc.srv
+    Move.srv
+  )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -65,10 +69,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+  generate_messages(
+    DEPENDENCIES
+    std_msgs  # Or other packages containing msgs
+  )
 
 ###################################
 ## catkin specific configuration ##
@@ -81,9 +85,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES brain
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+#  LIBRARIES table_set
+#  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
+  CATKIN_DEPENDS message_runtime
 )
 
 ###########
@@ -93,24 +98,21 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 # include_directories(include)
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-)
 
 ## Declare a cpp library
-# add_library(brain
-#   src/${PROJECT_NAME}/brain.cpp
+# add_library(table_set
+#   src/${PROJECT_NAME}/table_set.cpp
 # )
 
 ## Declare a cpp executable
-# add_executable(brain_node src/brain_node.cpp)
+# add_executable(table_set_node src/table_set_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
-# add_dependencies(brain_node brain_generate_messages_cpp)
+# add_dependencies(table_set_node table_set_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(brain_node
+# target_link_libraries(table_set_node
 #   ${catkin_LIBRARIES}
 # )
 
@@ -129,7 +131,7 @@ include_directories(
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS brain brain_node
+# install(TARGETS table_set table_set_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -154,7 +156,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_brain.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_table_set.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

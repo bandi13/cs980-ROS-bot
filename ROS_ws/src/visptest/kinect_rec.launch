@@ -1,0 +1,4 @@
+<launch>
+  <include file="/home/ros/visptest/openni2.launch"/>
+  <include file="/home/ros/visptest/track_kinect.launch"/>
+</launch>

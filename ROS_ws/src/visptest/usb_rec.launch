@@ -1,0 +1,4 @@
+<launch>
+  <include file="/home/ros/visptest/usb_cam.launch"/>
+  <include file="/home/ros/visptest/track_usb.launch"/>
+</launch>
