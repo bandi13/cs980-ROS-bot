@@ -1,0 +1,5 @@
+---
+int64 size
+float64[] goals
+float64[] pieces
+float64[] piece_centers

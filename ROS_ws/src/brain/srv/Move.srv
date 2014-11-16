@@ -1,0 +1,4 @@
+float64[] piece
+float64[] dest
+---
+int64 result

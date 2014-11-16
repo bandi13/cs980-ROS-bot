@@ -1,0 +1,3 @@
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:$DIR/arm:$DIR/brain:$DIR/eyes
